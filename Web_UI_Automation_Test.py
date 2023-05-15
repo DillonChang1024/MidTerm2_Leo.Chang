@@ -21,45 +21,6 @@ driver.maximize_window()
 # navigate to AppWorks School Website
 driver.get("https://phptravels.net/api/admin")
 
-
-#/html/body/div/div[1]/main/div/div/div/div[1]/div/form/div[4]/button
-
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=text]'))).send_keys(" ")
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=password]'))).send_keys("demoadmin")
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div/div[1]/main/div/div/div/div[1]/div/form/div[4]/button'))).click()
-print('empty email, login fail')
-driver.refresh()
-
-
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=text]'))).send_keys("admin@phptravels.com")
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=password]'))).send_keys(" ")
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div/div[1]/main/div/div/div/div[1]/div/form/div[4]/button'))).click()
-print('empty password, login fail')
-driver.refresh()
-
-
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=text]'))).send_keys("admin@phptravels.com")
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=password]'))).send_keys("123")
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div/div[1]/main/div/div/div/div[1]/div/form/div[4]/button'))).click()
-print('wrong password, login fail')
-driver.refresh()
-
-
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=text]'))).send_keys("admin@phptravels.com")
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=password]'))).send_keys("123456")
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div/div[1]/main/div/div/div/div[1]/div/form/div[4]/button'))).click()
-print('wrong password, login fail')
-driver.refresh()
-
-
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=text]'))).send_keys("admin@phptravels.com")
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=password]'))).send_keys("demoadmin")
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div/div[1]/main/div/div/div/div[1]/div/form/div[4]/button'))).click()
-print('login success')
-
-
-##layoutAuthentication_content > main > div > div > div > div.card.card-raised.shadow-10.mt-5.mt-xl-10.mb-4 > div > form > div.form-group.d-flex.align-items-center.justify-content-between.mt-4.mb-0 > button
-
 # Load test data from the spreadsheet
 workbook = openpyxl.load_workbook('PHPTravels-TestCases.xlsx')
 sheet = workbook['Login']  # Assuming the test cases are in a sheet named 'Login'
@@ -103,18 +64,38 @@ for row in sheet.iter_rows(min_row=2):  # Assuming the test cases start from the
 # Close the WebDriver
 driver.quit()
 
-
 '''
-我有一份excel檔案名稱叫做 PHPTravels-TestCases.xlsx
-內容是
-第一欄 : Email
-分別是 admin@phptravels.com / 空值 / admin@phptravels.com / admin@phptravels.com / test@test.com
-第二欄 : Password
-分別是 demoadmin / demoadmin / 空值 / 123456 / demoadmin 	
-這樣可以登入成功
 
-但我同時要測email為空/Email是錯的/password為空/password是錯的
-那我該怎麼設計
-請用python+selenium回答
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=text]'))).send_keys(" ")
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=password]'))).send_keys("demoadmin")
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div/div[1]/main/div/div/div/div[1]/div/form/div[4]/button'))).click()
+print('empty email, login fail')
+driver.refresh()
 
+
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=text]'))).send_keys("admin@phptravels.com")
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=password]'))).send_keys(" ")
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div/div[1]/main/div/div/div/div[1]/div/form/div[4]/button'))).click()
+print('empty password, login fail')
+driver.refresh()
+
+
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=text]'))).send_keys("admin@phptravels.com")
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=password]'))).send_keys("123")
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div/div[1]/main/div/div/div/div[1]/div/form/div[4]/button'))).click()
+print('wrong password, login fail')
+driver.refresh()
+
+
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=text]'))).send_keys("admin@phptravels.com")
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=password]'))).send_keys("123456")
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div/div[1]/main/div/div/div/div[1]/div/form/div[4]/button'))).click()
+print('wrong password, login fail')
+driver.refresh()
+
+
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=text]'))).send_keys("admin@phptravels.com")
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type=password]'))).send_keys("demoadmin")
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div/div[1]/main/div/div/div/div[1]/div/form/div[4]/button'))).click()
+print('login success')
 '''
