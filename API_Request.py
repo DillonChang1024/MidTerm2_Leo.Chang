@@ -1,14 +1,14 @@
-# Part 1:
-# Create User: Create new user, return created user data.
-# POST: /user/create
-url = "https://dummyapi.io/data/v1/user/create"
+import requests
+import json
 
+#part1
+url = "https://dummyapi.io/data/v1/user/create"
 headers = {
   'app-id': '63eb435ad8bb0b7ee5b67a77'
 }
 payload = {
-   "firstName": "Chang",
-   "lastName": "Leo",
+   "firstName": "chang",
+   "lastName": "leo",
    "email": "dillontsvs@gmail.com"
 }
 
@@ -16,11 +16,10 @@ response = requests.request("POST", url, headers=headers, json=payload)
 assert response.status_code == 200, f"{response.status_code}"
 data = response.json()
 user_id = data['id']
-''''''
-# Part 2:
-# Delete User: Delete user by id, return id of deleted user
-# DELETE: /user/:id
-url = f"https://dummyapi.io/data/v1/user/%7Buser_id%7D"
+
+#=============================
+#part2
+url = f"https://dummyapi.io/data/v1/user/{user_id}"
 
 headers = {
   'app-id': '63eb435ad8bb0b7ee5b67a77'
@@ -29,12 +28,11 @@ payload = {
   'id': f'{user_id}'
 }
 
-response = requests.request("POST", url, headers=headers, json=payload)
+response = requests.request("DELETE", url, headers=headers, json=payload)
 assert response.status_code == 200, f"{response.status_code}"
 
-# Part 3:
-# Create Post: Create new post, return created post data.
-# POST: /post/create
+#=============================
+#part3
 url = "https://dummyapi.io/data/v1/post/create"
 
 headers = {
@@ -52,3 +50,26 @@ response = requests.request("POST", url, headers=headers, json=payload)
 data = response.json()
 assert response.status_code == 200, f"{response.status_code}"
 print(data)
+
+#=============================
+#Part4
+url = f"https://dummyapi.io/data/v1/user/{user_id}/post"
+
+headers = {
+  'app-id': '63eb435ad8bb0b7ee5b67a77'
+}
+response = requests.request("GET", url, headers=headers, json=payload)
+data = response.json()
+assert response.status_code == 200, f"{response.status_code}"
+print(data)
+
+#=============================
+#Part5
+url = f"https://dummyapi.io/data/v1/user/{user_id}"
+headers = {
+  'app-id': '63eb435ad8bb0b7ee5b67a77'
+}
+
+response = requests.request("DELETE", url, headers=headers, json=payload)
+assert response.status_code == 200, f"{response.status_code}"
+print(response)
